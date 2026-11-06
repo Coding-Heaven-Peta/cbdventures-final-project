@@ -1,5 +1,7 @@
 package za.ac.richfield.cbdventures.config;
 
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -7,10 +9,9 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -18,21 +19,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import za.ac.richfield.cbdventures.security.JwtAuthenticationFilter;
 import za.ac.richfield.cbdventures.security.OAuthLoginFailureHandler;
 import za.ac.richfield.cbdventures.security.OAuthLoginSuccessHandler;
 
+import java.io.IOException;
 import java.util.List;
 
-/**
- * Stateless JWT security.
- *
- * <p>Public (no token needed): browsing categories, businesses, events,
- * recommendations, reviews and the static web client.
- * Authenticated: posting reviews, managing own listings, admin verification.</p>
- */
 @Configuration
 public class SecurityConfig {
 
@@ -61,11 +54,9 @@ public class SecurityConfig {
                 ? SessionCreationPolicy.IF_REQUIRED : SessionCreationPolicy.STATELESS));
 
         http.authorizeHttpRequests(auth -> auth
-                        // Static single page app + PWA assets
                         .requestMatchers("/", "/index.html", "/css/**", "/js/**", "/images/**",
                                 "/icons/**", "/manifest.webmanifest", "/sw.js", "/favicon.ico").permitAll()
                         .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
-                        // Public discovery API
                         .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login",
                                 "/api/auth/verify", "/api/auth/resend", "/api/auth/oauth/exchange").permitAll()
                         .requestMatchers(HttpMethod.GET,
@@ -78,9 +69,7 @@ public class SecurityConfig {
                                 "/api/events/**",
                                 "/api/recommendations/**",
                                 "/api/discover/**").permitAll()
-                        // Student assistant (public chat + curated directory)
                         .requestMatchers("/api/assistant/**").permitAll()
-                        // Operational endpoints
                         .requestMatchers("/actuator/health", "/actuator/info").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
@@ -90,7 +79,6 @@ public class SecurityConfig {
                 .exceptionHandling(handling -> handling
                         .authenticationEntryPoint(unauthorisedEntryPoint())
                         .accessDeniedHandler(forbiddenHandler()))
-                // Required for the H2 console to render inside its frames during demos
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         if (oauthConfigured) {
@@ -104,10 +92,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /**
-     * Anonymous callers receive 401 (so the client opens the sign-in dialog),
-     * authenticated callers without the right role receive 403.
-     */
     private AuthenticationEntryPoint unauthorisedEntryPoint() {
         return (request, response, ex) -> writeError(response, HttpServletResponse.SC_UNAUTHORIZED,
                 "Unauthorized", "Please sign in to continue.");
@@ -129,8 +113,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        // BCrypt with the default strength of 10, as required by the SRS.
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
