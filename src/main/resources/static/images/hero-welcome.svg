@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" width="480" height="420" role="img"
+     aria-label="Illustration of the Union Buildings at dusk in Pretoria">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A1520"/>
+      <stop offset="42%" stop-color="#3A2430"/>
+      <stop offset="72%" stop-color="#8A4A35"/>
+      <stop offset="100%" stop-color="#D9834C"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="82%" r="48%">
+      <stop offset="0%" stop-color="#FFC98A" stop-opacity=".85"/>
+      <stop offset="55%" stop-color="#E8853F" stop-opacity=".32"/>
+      <stop offset="100%" stop-color="#E8853F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lawn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2A3327"/>
+      <stop offset="100%" stop-color="#141A14"/>
+    </linearGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4A3B34"/>
+      <stop offset="100%" stop-color="#241C1A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="480" height="420" fill="url(#sky)"/>
+  <circle cx="240" cy="300" r="150" fill="url(#glow)"/>
+
+  <!-- distant hills -->
+  <path d="M0 286c60-16 120-10 180-22s120-24 180-12 90 18 120 12v40H0z" fill="#241C22" opacity=".85"/>
+
+  <!-- Union Buildings: twin wings, dome and colonnade -->
+  <g fill="url(#stone)">
+    <rect x="96" y="238" width="288" height="56" rx="3"/>
+    <rect x="86" y="286" width="308" height="12" rx="3"/>
+    <!-- wings -->
+    <rect x="96" y="196" width="74" height="44" rx="3"/>
+    <rect x="310" y="196" width="74" height="44" rx="3"/>
+    <!-- colonnades -->
+    <g fill="#2E2422">
+      <rect x="118" y="204" width="6" height="34" rx="2"/>
+      <rect x="132" y="204" width="6" height="34" rx="2"/>
+      <rect x="146" y="204" width="6" height="34" rx="2"/>
+      <rect x="332" y="204" width="6" height="34" rx="2"/>
+      <rect x="346" y="204" width="6" height="34" rx="2"/>
+      <rect x="360" y="204" width="6" height="34" rx="2"/>
+      <rect x="176" y="250" width="7" height="44" rx="2"/>
+      <rect x="196" y="250" width="7" height="44" rx="2"/>
+      <rect x="216" y="250" width="7" height="44" rx="2"/>
+      <rect x="236" y="250" width="7" height="44" rx="2"/>
+      <rect x="256" y="250" width="7" height="44" rx="2"/>
+      <rect x="276" y="250" width="7" height="44" rx="2"/>
+      <rect x="296" y="250" width="7" height="44" rx="2"/>
+    </g>
+    <!-- centre block and dome -->
+    <rect x="196" y="206" width="88" height="34" rx="3"/>
+    <path d="M212 206c0-20 13-32 28-32s28 12 28 32z" fill="#3A2C28"/>
+    <ellipse cx="240" cy="176" rx="13" ry="11" fill="#4A3830"/>
+    <rect x="238" y="156" width="4" height="12" rx="2" fill="#4A3830"/>
+  </g>
+
+  <!-- warm reflected light on the stone -->
+  <path d="M96 292h288v10H96z" fill="#B76A3D" opacity=".22"/>
+
+  <!-- terraced lawns -->
+  <path d="M0 300h480v120H0z" fill="url(#lawn)"/>
+  <g stroke="#39432F" stroke-width="2" opacity=".8">
+    <path d="M0 322h480M0 348h480M0 376h480M0 404h480"/>
+    <path d="M120 300v120M240 300v120M360 300v120" opacity=".5"/>
+  </g>
+  <!-- pathway towards the statue -->
+  <path d="M228 300h24l40 120h-104z" fill="#3C4436" opacity=".9"/>
+  <circle cx="240" cy="356" r="6" fill="#1B2119"/>
+  <rect x="236" y="360" width="8" height="20" rx="2" fill="#1B2119"/>
+  <!-- jacaranda silhouettes -->
+  <g fill="#171E1A">
+    <path d="M40 420v-58a26 26 0 0 1 26-26 24 24 0 0 1 22 34 20 20 0 0 1-6 50z"/>
+    <path d="M440 420v-46a22 22 0 0 0-22-22 20 20 0 0 0-18 28 17 17 0 0 0 5 40z"/>
+  </g>
+  <g fill="#7E5AA8" opacity=".33">
+    <circle cx="58" cy="352" r="17"/><circle cx="76" cy="366" r="13"/><circle cx="42" cy="368" r="12"/>
+    <circle cx="424" cy="360" r="15"/><circle cx="440" cy="376" r="11"/>
+  </g>
+</svg>

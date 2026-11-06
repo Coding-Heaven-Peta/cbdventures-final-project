@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="restaurants illustration 8">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0%" stop-color="#180A12"/>
+      <stop offset="55%" stop-color="#6B1D36"/>
+      <stop offset="100%" stop-color="#180A12"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#180A12" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#180A12"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD2DC" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#FFD2DC" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#sky)"/>
+  <circle cx="308" cy="152" r="176.4" fill="url(#glow)" opacity="0.55"/>
+  <circle cx="308" cy="152" r="144" fill="none" stroke="#FFD2DC" stroke-width="1.2" opacity="0.30"/>
+    <circle cx="308" cy="152" r="190" fill="none" stroke="#FFD2DC" stroke-width="1.2" opacity="0.24"/>
+    <circle cx="308" cy="152" r="236" fill="none" stroke="#FFD2DC" stroke-width="1.2" opacity="0.18"/>
+    <circle cx="308" cy="152" r="282" fill="none" stroke="#FFD2DC" stroke-width="1.2" opacity="0.12"/>
+  <circle cx="308" cy="152" r="84" fill="#C25570" opacity="0.92"/>
+  <circle cx="282.8" cy="126.8" r="54.6" fill="#FFD2DC" opacity="0.35"/>
+  <rect x="0" y="315" width="800" height="285" fill="url(#ground)"/>
+  <rect x="-40" y="292" width="99" height="72" rx="10" fill="#FFD2DC" opacity="0.156"/>
+    <rect x="71" y="285" width="83" height="110" rx="10" fill="#FFD2DC" opacity="0.162"/>
+    <rect x="165" y="297" width="124" height="195" rx="10" fill="#FFD2DC" opacity="0.091"/>
+    <rect x="319" y="280" width="62" height="153" rx="10" fill="#FFD2DC" opacity="0.086"/>
+    <rect x="406" y="290" width="75" height="169" rx="10" fill="#FFD2DC" opacity="0.194"/>
+    <rect x="505" y="315" width="79" height="72" rx="10" fill="#FFD2DC" opacity="0.184"/>
+    <rect x="608" y="280" width="82" height="132" rx="10" fill="#FFD2DC" opacity="0.114"/>
+    <rect x="703" y="279" width="82" height="115" rx="10" fill="#FFD2DC" opacity="0.192"/>
+    <rect x="815" y="309" width="124" height="84" rx="10" fill="#FFD2DC" opacity="0.147"/>
+  <g transform="translate(90, 165) scale(1.35)" color="#FFD2DC" opacity="0.28">
+    <circle cx="50" cy="52" r="26" fill="none" stroke="currentColor" stroke-width="4.5"/>
+        <circle cx="50" cy="52" r="13" fill="none" stroke="currentColor" stroke-width="3.5"/>
+        <path d="M50 16v10M50 78v10M14 52h10M76 52h10" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <rect width="800" height="600" filter="url(#grain)" opacity="0.5"/>
+  <rect x="0" y="0" width="800" height="600" fill="none" stroke="#FFD2DC" stroke-opacity="0.15" stroke-width="2"/>
+</svg>

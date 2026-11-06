@@ -1,0 +1,150 @@
+CBDVentures - database rule test run
+Generated: 2026-10-27 21:51 UTC
+Server: 11.8.6-MariaDB-0+deb13u1 from Debian
+Schema: db/schema_mysql.sql   Triggers: db/triggers_mysql.sql
+Command: mysql -u root -p --force cbdventures < db/tests/trigger_tests.sql
+
+----------------------------------------------------------------
+step
+--- SETUP: fixtures created ---
+test
+TEST 1 - valid listing inside the zone was accepted
+business_id	name
+6	Zone Test Kitchen
+test
+TEST 2 - EXPECT ERROR 1644: listing 3 km away as PRIMARY_1KM
+expected
+TR-01 zone trigger
+--------------
+INSERT INTO business (owner_id, category_id, name, address, latitude, longitude,
+                      zone_radius, price_level, status)
+VALUES (@owner, @category, 'Far Away Bakery', '99 Far Road',
+        -25.772000, 28.210000, 'PRIMARY_1KM', 'R', 'ACTIVE')
+--------------
+
+ERROR 1644 (45000) at line 56: TR-01 Listing is outside the allowed pilot zone (1 km primary / 5 km extended) from Richfield.
+test
+TEST 3 - EXPECT ERROR 1644: an UPDATE moving a listing out of the zone
+--------------
+UPDATE business SET latitude = -25.800000, longitude = 28.250000
+WHERE business_id = @business
+--------------
+
+ERROR 1644 (45000) at line 63: TR-02 Listing update moved it outside the allowed pilot zone from Richfield.
+test
+TEST 4 - the same 3 km listing IS allowed in the extended zone
+business_id	name	zone_radius
+7	Extended Zone Eatery	EXTENDED_5KM
+test
+TEST 5 - hours: a full week for the listing
+hours_rows
+7
+test
+TEST 6 - EXPECT ERROR 1062: the same weekday twice (unique key)
+--------------
+INSERT INTO business_hours (business_id, day_of_week, is_closed, open_time, close_time)
+VALUES (@business, 1, FALSE, '09:00:00', '10:00:00')
+--------------
+
+ERROR 1062 (23000) at line 87: Duplicate entry '6-1' for key 'uk_business_hours_day'
+test
+TEST 7 - EXPECT ERROR 1644: opening time after closing time
+--------------
+INSERT INTO business_hours (business_id, day_of_week, is_closed, open_time, close_time)
+VALUES (@business, 7, FALSE, '18:00:00', '09:00:00')
+--------------
+
+ERROR 1644 (45000) at line 91: TR-07 The opening time must be earlier than the closing time.
+test
+TEST 8 - EXPECT ERROR 1644: a day that is both closed and timed
+--------------
+INSERT INTO business_hours (business_id, day_of_week, is_closed, open_time, close_time)
+VALUES (@business, 7, TRUE, '08:00:00', '12:00:00')
+--------------
+
+ERROR 1644 (45000) at line 95: TR-07 A closed day cannot have opening or closing times.
+test
+TEST 9 - EXPECT ERROR 1452: hours for a listing that does not exist
+--------------
+INSERT INTO business_hours (business_id, day_of_week, is_closed, open_time, close_time)
+VALUES (999999, 1, FALSE, '08:00:00', '12:00:00')
+--------------
+
+ERROR 1452 (23000) at line 99: Cannot add or update a child row: a foreign key constraint fails (`cbdventures`.`business_hours`, CONSTRAINT `fk_hours_business` FOREIGN KEY (`business_id`) REFERENCES `business` (`business_id`) ON DELETE CASCADE ON UPDATE CASCADE)
+test
+TEST 10 - reviews: visitor may review the listing once
+review_id	rating
+5	5
+test
+TEST 11 - EXPECT ERROR 1062: the same visitor reviewing again
+--------------
+INSERT INTO review (user_id, business_id, rating, comment)
+VALUES (@visitor, @business, 1, 'Changed my mind twice.')
+--------------
+
+ERROR 1062 (23000) at line 109: Duplicate entry '8-6' for key 'uk_review_user_business'
+test
+TEST 12 - EXPECT ERROR 1644: the owner reviewing their own business
+--------------
+INSERT INTO review (user_id, business_id, rating, comment)
+VALUES (@owner, @business, 5, 'I am my own biggest fan.')
+--------------
+
+ERROR 1644 (45000) at line 113: TR-03 A business owner cannot review their own business.
+test
+TEST 13 - EXPECT ERROR 4025: rating outside 1..5 (CHECK constraint)
+--------------
+INSERT INTO review (user_id, business_id, rating, comment)
+VALUES (@visitor, (SELECT business_id FROM business WHERE name = 'Extended Zone Eatery'), 9, 'Nine stars.')
+--------------
+
+ERROR 4025 (23000) at line 117: CONSTRAINT `chk_review_rating` failed for `cbdventures`.`review`
+test
+TEST 14 - EXPECT ERROR 1644: editing a fresh review inside the 24 h window
+--------------
+UPDATE review SET rating = 4, comment = 'Downgraded already.'
+WHERE user_id = @visitor AND business_id = @business
+--------------
+
+ERROR 1644 (45000) at line 121: TR-04 You can update your review once every 24 hours.
+test
+TEST 15 - events: a future event is accepted
+event_id	title	event_date_time
+3	Trigger Test Quiz Night	2026-11-03 21:51:55
+test
+TEST 16 - EXPECT ERROR 1644: an event in the past
+--------------
+INSERT INTO event (business_id, title, event_date_time, ticket_price)
+VALUES (@business, 'Yesterday Party', NOW() - INTERVAL 1 DAY, 0.00)
+--------------
+
+ERROR 1644 (45000) at line 131: TR-05 A new event must have a date and time in the future.
+test
+TEST 17 - EXPECT ERROR 1644: moving an event into the past
+--------------
+UPDATE event SET event_date_time = NOW() - INTERVAL 2 DAY
+WHERE title = 'Trigger Test Quiz Night'
+--------------
+
+ERROR 1644 (45000) at line 135: TR-06 An event update cannot move the event into the past.
+test
+TEST 18 - activity: a view is recorded and survives
+activity_id	activity_type
+3	VIEW_PROFILE
+test
+TEST 19 - deleting a listing keeps the activity row (SET NULL)
+orphaned_but_kept
+1
+test
+TEST 20 - EXPECT ERROR 1451: cannot delete a category in use
+--------------
+DELETE FROM category WHERE category_id = @category
+--------------
+
+ERROR 1451 (23000) at line 150: Cannot delete or update a parent row: a foreign key constraint fails (`cbdventures`.`amenity`, CONSTRAINT `fk_amenity_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE)
+step
+--- ALL TESTS RUN: rolling back so the database is unchanged ---
+leftover_test_users
+0
+leftover_test_listings
+0

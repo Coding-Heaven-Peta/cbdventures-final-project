@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_49a3f0faf25c3216906df62bca30da0e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/marslan390/BeautifyMarker/leaflet-beautify-marker-icon.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marslan390/BeautifyMarker/leaflet-beautify-marker-icon.min.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_49a3f0faf25c3216906df62bca30da0e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_49a3f0faf25c3216906df62bca30da0e = L.map(
+                "map_49a3f0faf25c3216906df62bca30da0e",
+                {
+                    center: [-25.7464, 28.192483],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 16,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_49a3f0faf25c3216906df62bca30da0e);
+
+            
+
+        
+    
+            var tile_layer_11850ad3b778ec5d77cec29bb31e7f52 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_11850ad3b778ec5d77cec29bb31e7f52.addTo(map_49a3f0faf25c3216906df62bca30da0e);
+        
+    
+            var circle_8b722b22366acd8d68648ffe056372cb = L.circle(
+                [-25.7464, 28.192483],
+                {"bubblingMouseEvents": true, "color": "#2563eb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3b82f6", "fillOpacity": 0.08, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 2}
+            ).addTo(map_49a3f0faf25c3216906df62bca30da0e);
+        
+    
+            circle_8b722b22366acd8d68648ffe056372cb.bindTooltip(
+                `<div>
+                     1000 m CBDVentures pilot boundary
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e5907835948466a1ca4253ddb8ebc9af = L.marker(
+                [-25.7464, 28.192483],
+                {
+}
+            ).addTo(map_49a3f0faf25c3216906df62bca30da0e);
+        
+    
+            var beautify_icon_345a54268a2c2734b9961767978236de = new L.BeautifyIcon.icon(
+                {
+  "icon": "graduation-cap",
+  "iconShape": "marker",
+  "borderWidth": 3,
+  "borderColor": "#1d4ed8",
+  "textColor": "#1d4ed8",
+  "backgroundColor": "#FFF",
+  "innerIconStyle": "",
+  "spin": false,
+  "isAlphaNumericIcon": false,
+}
+            )
+            marker_e5907835948466a1ca4253ddb8ebc9af.setIcon(beautify_icon_345a54268a2c2734b9961767978236de);
+        
+    
+            marker_e5907835948466a1ca4253ddb8ebc9af.bindTooltip(
+                `<div>
+                     Richfield Pretoria campus (map centre)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e5907835948466a1ca4253ddb8ebc9af.setIcon(beautify_icon_345a54268a2c2734b9961767978236de);
+            
+    
+            var feature_group_75b8cc89a6e2801a985459dd066c03f2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_386fbf78ee6d232deacf2a6ee935a2b5 = L.marker(
+                [-25.74676, 28.19472],
+                {
+}
+            ).addTo(feature_group_75b8cc89a6e2801a985459dd066c03f2);
+        
+    
+            var beautify_icon_78e62a41c332d03a6ed1f165d9a9ab94 = new L.BeautifyIcon.icon(
+                {
+  "icon": "map-marker",
+  "iconShape": "marker",
+  "borderWidth": 3,
+  "borderColor": "green",
+  "textColor": "green",
+  "backgroundColor": "#FFF",
+  "innerIconStyle": "",
+  "spin": false,
+  "isAlphaNumericIcon": false,
+}
+            )
+            marker_386fbf78ee6d232deacf2a6ee935a2b5.setIcon(beautify_icon_78e62a41c332d03a6ed1f165d9a9ab94);
+        
+    
+        var popup_07d95a2bf3a6b17781fa2336bcc6331f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e14b1cd41e78f70cbb7817c5fd06b9e3 = $(`<div id="html_e14b1cd41e78f70cbb7817c5fd06b9e3" style="width: 100.0%; height: 100.0%;"><strong>Black Bistro Lounge &amp; Cocktail Kitchen</strong><br>Category: Sit-Down Eateries<br>Distance from campus: 227.6 m<br>Address: Drama Theatre Entrance, 320 Pretorius St, Pretoria Central, 0002, South Africa<br>Phone: +27 12 320 0206<br>Price level: Not available<br>Bistro and cocktail kitchen serving meals and drinks at the South African State Theatre.<br><a href="https://www.google.com/maps/dir/?api=1&destination=-25.74676,28.19472" target="_blank" rel="noopener noreferrer">Get directions</a></div>`)[0];
+                popup_07d95a2bf3a6b17781fa2336bcc6331f.setContent(html_e14b1cd41e78f70cbb7817c5fd06b9e3);
+            
+        
+
+        marker_386fbf78ee6d232deacf2a6ee935a2b5.bindPopup(popup_07d95a2bf3a6b17781fa2336bcc6331f)
+        ;
+
+        
+    
+    
+            marker_386fbf78ee6d232deacf2a6ee935a2b5.bindTooltip(
+                `<div>
+                     Black Bistro Lounge &amp; Cocktail Kitchen · 227.6 m
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_386fbf78ee6d232deacf2a6ee935a2b5.setIcon(beautify_icon_78e62a41c332d03a6ed1f165d9a9ab94);
+            
+    
+            feature_group_75b8cc89a6e2801a985459dd066c03f2.addTo(map_49a3f0faf25c3216906df62bca30da0e);
+        
+    
+            var feature_group_17f462b35950ec6a31004e983b0716ac = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_e21409c961b3b745b035eb6332dc70cb = L.marker(
+                [-25.7446296, 28.1948915],
+                {
+}
+            ).addTo(feature_group_17f462b35950ec6a31004e983b0716ac);
+        
+    
+            var beautify_icon_659cf5c9b7868e03a46b5a0b8a9951cf = new L.BeautifyIcon.icon(
+                {
+  "icon": "map-marker",
+  "iconShape": "marker",
+  "borderWidth": 3,
+  "borderColor": "blue",
+  "textColor": "blue",
+  "backgroundColor": "#FFF",
+  "innerIconStyle": "",
+  "spin": false,
+  "isAlphaNumericIcon": false,
+}
+            )
+            marker_e21409c961b3b745b035eb6332dc70cb.setIcon(beautify_icon_659cf5c9b7868e03a46b5a0b8a9951cf);
+        
+    
+        var popup_92c1aa98ed3dd87fa675e95c84940bf2 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d2930ab06c37fd2ba55818c53e174475 = $(`<div id="html_d2930ab06c37fd2ba55818c53e174475" style="width: 100.0%; height: 100.0%;"><strong>Es&#x27;kia Mphahlele Community Library</strong><br>Category: Study &amp; Social Spaces<br>Distance from campus: 311.4 m<br>Address: 347 Madiba St, Pretoria Central, Pretoria, 0002, South Africa<br>Phone: +27 12 358 8957<br>Price level: Not available<br>Public library providing reading, research and information services.<br><a href="https://www.google.com/maps/dir/?api=1&destination=-25.7446296,28.1948915" target="_blank" rel="noopener noreferrer">Get directions</a></div>`)[0];
+                popup_92c1aa98ed3dd87fa675e95c84940bf2.setContent(html_d2930ab06c37fd2ba55818c53e174475);
+            
+        
+
+        marker_e21409c961b3b745b035eb6332dc70cb.bindPopup(popup_92c1aa98ed3dd87fa675e95c84940bf2)
+        ;
+
+        
+    
+    
+            marker_e21409c961b3b745b035eb6332dc70cb.bindTooltip(
+                `<div>
+                     Es&#x27;kia Mphahlele Community Library · 311.4 m
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e21409c961b3b745b035eb6332dc70cb.setIcon(beautify_icon_659cf5c9b7868e03a46b5a0b8a9951cf);
+            
+    
+            feature_group_17f462b35950ec6a31004e983b0716ac.addTo(map_49a3f0faf25c3216906df62bca30da0e);
+        
+    
+            var feature_group_7ee03224f59143ea40fe3e3aee46ece2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_a14d91f8cdfdbd87daad98e53c193de9 = L.marker(
+                [-25.74657, 28.1892],
+                {
+}
+            ).addTo(feature_group_7ee03224f59143ea40fe3e3aee46ece2);
+        
+    
+            var beautify_icon_e44511bdeed67870012280445312c45a = new L.BeautifyIcon.icon(
+                {
+  "icon": "map-marker",
+  "iconShape": "marker",
+  "borderWidth": 3,
+  "borderColor": "purple",
+  "textColor": "purple",
+  "backgroundColor": "#FFF",
+  "innerIconStyle": "",
+  "spin": false,
+  "isAlphaNumericIcon": false,
+}
+            )
+            marker_a14d91f8cdfdbd87daad98e53c193de9.setIcon(beautify_icon_e44511bdeed67870012280445312c45a);
+        
+    
+        var popup_511ba26bac26bda82f6d3740c0f46677 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5663f56641401f9b33e6c2f1c173da70 = $(`<div id="html_5663f56641401f9b33e6c2f1c173da70" style="width: 100.0%; height: 100.0%;"><strong>SA Queen Hair &amp; Beauty</strong><br>Category: Salons &amp; Personal Care<br>Distance from campus: 329.4 m<br>Address: 231 Church St, Pretoria Central, Pretoria, 0002, South Africa<br>Phone: 072 676 2797<br>Price level: Not available<br>Hair and beauty salon offering hair and nail services.<br><a href="https://www.google.com/maps/dir/?api=1&destination=-25.74657,28.1892" target="_blank" rel="noopener noreferrer">Get directions</a></div>`)[0];
+                popup_511ba26bac26bda82f6d3740c0f46677.setContent(html_5663f56641401f9b33e6c2f1c173da70);
+            
+        
+
+        marker_a14d91f8cdfdbd87daad98e53c193de9.bindPopup(popup_511ba26bac26bda82f6d3740c0f46677)
+        ;
+
+        
+    
+    
+            marker_a14d91f8cdfdbd87daad98e53c193de9.bindTooltip(
+                `<div>
+                     SA Queen Hair &amp; Beauty · 329.4 m
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a14d91f8cdfdbd87daad98e53c193de9.setIcon(beautify_icon_e44511bdeed67870012280445312c45a);
+            
+    
+            feature_group_7ee03224f59143ea40fe3e3aee46ece2.addTo(map_49a3f0faf25c3216906df62bca30da0e);
+        
+    
+            var layer_control_846192d617d564dae93476d988611d53_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_11850ad3b778ec5d77cec29bb31e7f52,
+                },
+                overlays :  {
+                    "Sit-Down Eateries" : feature_group_75b8cc89a6e2801a985459dd066c03f2,
+                    "Study \u0026 Social Spaces" : feature_group_17f462b35950ec6a31004e983b0716ac,
+                    "Salons \u0026 Personal Care" : feature_group_7ee03224f59143ea40fe3e3aee46ece2,
+                },
+            };
+            let layer_control_846192d617d564dae93476d988611d53 = L.control.layers(
+                layer_control_846192d617d564dae93476d988611d53_layers.base_layers,
+                layer_control_846192d617d564dae93476d988611d53_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_49a3f0faf25c3216906df62bca30da0e);
+
+        
+</script>
+</html>

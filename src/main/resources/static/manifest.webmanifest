@@ -1,0 +1,27 @@
+{
+  "name": "CBDVentures — Pretoria CBD in Your Pocket",
+  "short_name": "CBDVentures",
+  "description": "Discover verified eateries, salons, study spots and events within 1 km of Richfield Graduate Institute of Technology, Pretoria Central.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FBF9F6",
+  "theme_color": "#6D3BD1",
+  "lang": "en-ZA",
+  "categories": ["travel", "food", "lifestyle"],
+  "icons": [
+    {
+      "src": "/images/icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

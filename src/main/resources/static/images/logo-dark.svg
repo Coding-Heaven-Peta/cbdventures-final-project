@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="CBDVentures logo">
+  <defs>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E27C4C"/>
+      <stop offset="100%" stop-color="#C2552E"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#141518"/>
+  <rect x="1" y="1" width="62" height="62" rx="17" fill="none" stroke="#2A2C33"/>
+  <g fill="none" stroke="url(#warm)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 47c8.5-5.5 13-12.6 13-20.5A13 13 0 0 0 19 26.5c0 7.9 4.5 15 13 20.5z"/>
+    <circle cx="32" cy="27" r="4.6"/>
+  </g>
+  <circle cx="45" cy="19" r="3.4" fill="#E0A33B"/>
+</svg>

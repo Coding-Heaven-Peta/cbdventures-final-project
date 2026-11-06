@@ -1,0 +1,71 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.19472,
+          -25.74676
+        ]
+      },
+      "properties": {
+        "business_id": 2,
+        "name": "Black Bistro Lounge & Cocktail Kitchen",
+        "description": "Bistro and cocktail kitchen serving meals and drinks at the South African State Theatre.",
+        "address": "Drama Theatre Entrance, 320 Pretorius St, Pretoria Central, 0002, South Africa",
+        "contact_phone": "+27 12 320 0206",
+        "price_level": null,
+        "status": "APPROVED",
+        "category": "Sit-Down Eateries",
+        "distance_m": 227.6
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.1948915,
+          -25.7446296
+        ]
+      },
+      "properties": {
+        "business_id": 3,
+        "name": "Es'kia Mphahlele Community Library",
+        "description": "Public library providing reading, research and information services.",
+        "address": "347 Madiba St, Pretoria Central, Pretoria, 0002, South Africa",
+        "contact_phone": "+27 12 358 8957",
+        "price_level": null,
+        "status": "APPROVED",
+        "category": "Study & Social Spaces",
+        "distance_m": 311.4
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.1892,
+          -25.74657
+        ]
+      },
+      "properties": {
+        "business_id": 1,
+        "name": "SA Queen Hair & Beauty",
+        "description": "Hair and beauty salon offering hair and nail services.",
+        "address": "231 Church St, Pretoria Central, Pretoria, 0002, South Africa",
+        "contact_phone": "072 676 2797",
+        "price_level": null,
+        "status": "APPROVED",
+        "category": "Salons & Personal Care",
+        "distance_m": 329.4
+      }
+    }
+  ]
+}

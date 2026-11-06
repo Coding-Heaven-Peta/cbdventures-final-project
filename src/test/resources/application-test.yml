@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:cbdventures_test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  h2:
+    console:
+      enabled: false
+
+cbd:
+  zone:
+    anchor-name: Richfield Graduate Institute of Technology - Pretoria Campus
+    anchor-address: 291 Helen Joseph Street, Pretoria Central
+    anchor-latitude: -25.746350
+    anchor-longitude: 28.192550
+    primary-radius-km: 1.0
+    extended-radius-km: 5.0
+    extended-enabled: false
+  security:
+    jwt:
+      secret: test-secret-key-for-cbdventures-unit-tests-only-1234567890
+      ttl-minutes: 60
+      issuer: cbdventures-api-test
+  seed:
+    enabled: false
+
+logging:
+  level:
+    org.hibernate: WARN

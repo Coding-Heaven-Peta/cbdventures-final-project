@@ -1,0 +1,84 @@
+spring:
+  application:
+    name: cbdventures
+  datasource:
+    # Demo / offline-friendly default: an embedded H2 database running in MySQL
+    # compatibility mode, persisted to ./data so listings survive a restart.
+    # Activate the "mysql" profile (see application-mysql.yml) for production.
+    url: jdbc:h2:file:./data/cbdventures;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DEFRAG_ALWAYS=TRUE
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jackson:
+    # Jackson 3 (shipped with Spring Boot 4) writes java.time values as ISO-8601
+    # strings by default, so no extra module registration is required.
+    default-property-inclusion: non_null
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          no-cache: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+
+server:
+  port: ${PORT:8080}
+  forward-headers-strategy: framework
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/javascript,application/json,image/svg+xml
+  error:
+    include-message: always
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+cbd:
+  zone:
+    anchor-name: Richfield Graduate Institute of Technology - Pretoria Campus
+    anchor-address: 291 Helen Joseph Street, Pretoria Central, opposite Sammy Marks Square
+    anchor-latitude: -25.746350
+    anchor-longitude: 28.192550
+    primary-radius-km: 1.0
+    extended-radius-km: 5.0
+    extended-enabled: false
+  security:
+    jwt:
+      # Override in production with an environment variable:
+      # CBD_JWT_SECRET=... (at least 32 characters)
+      secret: ${CBD_JWT_SECRET:cbdventures-group5-dev-secret-key-change-me-2026}
+      ttl-minutes: 720
+      issuer: cbdventures-api
+  oauth:
+    google:
+      client-id: ${GOOGLE_CLIENT_ID:}
+      client-secret: ${GOOGLE_CLIENT_SECRET:}
+    apple:
+      client-id: ${APPLE_CLIENT_ID:}
+      client-secret: ${APPLE_CLIENT_SECRET:}
+  seed:
+    enabled: true
+    demo-passwords: true
+
+logging:
+  level:
+    za.ac.richfield.cbdventures: INFO
+    org.hibernate.SQL: WARN

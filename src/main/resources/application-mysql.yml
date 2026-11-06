@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    # Production profile: MySQL 8.x (see db/schema_mysql.sql for the DDL that
+    # mirrors this schema). Start with:
+    #   ./mvnw spring-boot:run -Dspring-boot.run.profiles=mysql
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:cbdventures}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Africa/Johannesburg&characterEncoding=UTF-8
+    username: ${DB_USER:cbdventures}
+    password: ${DB_PASSWORD:cbdventures}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: Africa/Johannesburg
+  h2:
+    console:
+      enabled: false
+
+cbd:
+  seed:
+    enabled: ${CBD_SEED:true}
+
+logging:
+  level:
+    za.ac.richfield.cbdventures: INFO
