@@ -49,6 +49,14 @@ export async function renderProfile(container) {
       </div>
     </div>
 
+    <section class="appearance-settings" aria-labelledby="settings-heading">
+      <h2 id="settings-heading">Settings</h2>
+      <label class="theme-setting" for="theme-toggle">
+        <span class="menu-item__text"><strong>Light mode</strong><small>Switch between light and dark appearance</small></span>
+        <input id="theme-toggle" class="theme-switch" type="checkbox" role="switch" ${document.documentElement.dataset.theme === 'light' ? 'checked' : ''}>
+      </label>
+    </section>
+
     <div class="menu-list">
       <a class="menu-item" href="#/explore">
         <span class="menu-item__icon">${icon('search', 18)}</span>
@@ -106,8 +114,12 @@ export async function renderProfile(container) {
     </div>
 
     <p class="field__hint" style="margin-top:16px;text-align:center">
-      CBDVentures · Group 5 · dark edition build
+      CBDVentures · Group 5
     </p>`;
+
+  container.querySelector('#theme-toggle').addEventListener('change', (event) => {
+    window.cbdSetTheme(event.target.checked ? 'light' : 'dark');
+  });
 
   // Review count is derived from the listings the visitor has reviewed.
   try {

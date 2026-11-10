@@ -5,7 +5,7 @@
  *  - API GETs: network-first with a cache fallback, so listings you have already
  *    seen stay readable when the connection drops (FR-02 / NFR reliability).
  */
-const SHELL_CACHE = 'cbdventures-shell-v5';
+const SHELL_CACHE = 'cbdventures-shell-v6';
 const DATA_CACHE = 'cbdventures-data-v5';
 
 const SHELL_ASSETS = [
@@ -13,6 +13,7 @@ const SHELL_ASSETS = [
   '/index.html',
   '/css/app.css',
   '/js/app.js',
+  '/js/theme.js',
   '/js/api.js',
   '/js/ui.js',
   '/js/map-widget.js',
