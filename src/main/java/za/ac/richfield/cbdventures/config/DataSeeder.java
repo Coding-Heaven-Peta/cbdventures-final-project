@@ -406,7 +406,53 @@ public class DataSeeder implements ApplicationRunner {
                         "Free weekend music and yoga sessions in the park, ten minutes' walk from campus "
                                 + "through the CBD.",
                         new String[]{"Outdoor Seating", "Wheelchair Accessible", "Takeaway"},
-                        "012 392 4002", null));
+                        "012 392 4002", null),
+                // ---------------- Verified real Pretoria CBD businesses (storefront photographs) ----------------
+                new Definition("thabo", "food-drinks", "Thuba Rush KJ", "230 Pretorius Street, Pretoria Central (Opera Plaza)",
+                        20, -150, PriceLevel.R, "Mon-Sat 07:30 - 22:00", "07:30", "22:00",
+                        "Kota joint opposite FNB Bank in Opera Plaza, serving quarter-loaf kotas with polony, cheese, chips and atchar. Quick takeaway service popular with students.",
+                        new String[]{"Student Specials", "Takeaway", "Generous Portions", "Card Payments"},
+                        "073 115 6260", null),
+                new Definition("naledi", "food-drinks", "Magwinya Zone", "266 Pretorius Street, Pretoria Central (Centre Walk)",
+                        30, -260, PriceLevel.R, "Mon-Sat 08:00 - 18:00", "08:00", "18:00",
+                        "Magwinya (vetkoek / fat cakes) takeaway in the CBD, served fresh and hot. A student favourite for a quick breakfast or snack.",
+                        new String[]{"Takeaway", "Cash Only", "Generous Portions"},
+                        "081 301 5623", null),
+                new Definition("pieter", "restaurants", "Rebels Pizza", "Middestad Mall, Cnr Thabo Sehume & Pretorius Street, Pretoria Central",
+                        60, -100, PriceLevel.RR, "Daily 11:00 - 20:00", "11:00", "20:00",
+                        "Pretoria-born pizza chain with fresh, hand-made pizza, takeaway and delivery. A CBD staple for students and workers.",
+                        new String[]{"Card Payments", "Takeaway", "Student Specials", "Air Conditioning"},
+                        "012 321 1391", null),
+                new Definition("thabo", "food-drinks", "Honchos", "171 Lilian Ngoyi Street, Pretoria Central",
+                        -40, -60, PriceLevel.R, "Mon-Sat 09:00 - 19:45", "09:00", "19:45",
+                        "Halaal-certified fast food specialising in flame-grilled chicken, wraps and chips at student-friendly prices.",
+                        new String[]{"Takeaway", "Card Payments", "Student Specials", "Cash Only"},
+                        "012 321 1391", null),
+                new Definition("refilwe", "food-drinks", "QUICK BAKE", "Shop 1a, Opera Plaza, 7 Bank Lane, Pretoria Central",
+                        -33, -285, PriceLevel.R, "Mon-Fri 08:00 - 16:30, Sat 08:00 - 13:00", "08:00", "16:30",
+                        "Confectionery and coffee shop in Opera Plaza, known for fresh scones, biscuits and home-style baking.",
+                        new String[]{"Takeaway", "Card Payments", "Student Specials"},
+                        "012 753 4145", null),
+                new Definition("naledi", "food-drinks", "Top Class Fast Foods", "287 Pretorius Street, Pretoria Central",
+                        25, -280, PriceLevel.R, "Mon-Sat 07:00 - 19:00", "07:00", "19:00",
+                        "Fast-food takeaway on Pretorius Street serving kotas, chips and everyday quick eats.",
+                        new String[]{"Takeaway", "Cash Only", "Generous Portions"},
+                        null, null),
+                new Definition("pieter", "restaurants", "Four Four Two", "399 Helen Joseph Street, Pretoria Central",
+                        200, 10, PriceLevel.RR, "Mon-Sat 10:00 - 22:00", "10:00", "22:00",
+                        "Sports and music lounge with cocktails, bar bites and live music. Dine-in and outdoor seating in a relaxed CBD setting.",
+                        new String[]{"Card Payments", "Outdoor Seating", "Late Night"},
+                        "081 527 5444", null),
+                new Definition("refilwe", "restaurants", "Phola Shesa Nyama", "219 Pretorius Street, Finpark Arcade, Pretoria Central",
+                        -333, -183, PriceLevel.R, "Daily 09:00 - 19:00", "09:00", "19:00",
+                        "Shisa nyama grill in Finpark Arcade serving authentic braai meat with generous portions. Cash only and popular at lunch.",
+                        new String[]{"Takeaway", "Cash Only", "Generous Portions"},
+                        null, null),
+                new Definition("lerato", "study-spaces", "Es'kia Mphahlele Community Library", "Corner Madiba & Lillian Ngoyi Street, Sammy Marks Square, Pretoria Central",
+                        -80, 40, PriceLevel.R, "Mon-Fri 09:30 - 16:30", "09:30", "16:30",
+                        "City of Tshwane public library in Sammy Marks Square with reading and study areas, reference books, public computers and Wi-Fi. Houses the American Corner Pretoria.",
+                        new String[]{"Free Wi-Fi", "Quiet Atmosphere", "Power Outlets", "Wheelchair Accessible"},
+                        "012 358 8957", null));
 
         int coverIndex = 0;
         for (Definition definition : definitions) {
@@ -450,6 +496,29 @@ public class DataSeeder implements ApplicationRunner {
 
             businessIndex.put(definition.name(), businessRepository.save(business));
         }
+
+        // Front image override: use the real storefront photograph as the primary
+        // (front) image for each verified real Pretoria CBD business.
+        Map<String, String> frontPhotos = Map.of(
+                "Thuba Rush KJ", "/images/places/thuba-rush-kj.jpg",
+                "Magwinya Zone", "/images/places/magwinya-zone.jpg",
+                "Rebels Pizza", "/images/places/rebels-pizza.jpg",
+                "Honchos", "/images/places/honchos.jpg",
+                "QUICK BAKE", "/images/places/quick-bake.jpg",
+                "Top Class Fast Foods", "/images/places/top-class-fast-foods.jpg",
+                "Four Four Two", "/images/places/four-four-two.jpg",
+                "Phola Shesa Nyama", "/images/places/phola-shisa-nyama.jpg",
+                "Es'kia Mphahlele Community Library", "/images/places/es-kia-mphahlele-library.jpg"
+        );
+        for (Map.Entry<String, String> entry : frontPhotos.entrySet()) {
+            Business business = businessIndex.get(entry.getKey());
+            if (business != null) {
+                business.getImages().clear();
+                business.addImage(new BusinessImage(entry.getValue(), entry.getKey() + " - storefront photograph", true));
+                businessRepository.save(business);
+            }
+        }
+
         seedVerificationQueue(categoryBySlug, owners);
     }
 
